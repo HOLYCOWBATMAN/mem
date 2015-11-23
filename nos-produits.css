@@ -659,7 +659,7 @@
 #u1795-4
 {
 	z-index: 70;
-	width: 1284px;
+	width: auto;
 	min-height: 97px;
 	background-color: transparent;
 	line-height: 88px;
@@ -1082,7 +1082,7 @@
 #u2023-4
 {
 	z-index: 74;
-	width: 1284px;
+	width: auto;
 	min-height: 97px;
 	background-color: transparent;
 	line-height: 88px;
@@ -1459,7 +1459,7 @@
 #u1961
 {
 	z-index: 226;
-	width: 1354px;
+	width: auto;
 	height: 62px;
 	position: relative;
 	margin-right: -10000px;
@@ -1482,7 +1482,7 @@
 	position: relative;
 	margin-right: -10000px;
 	margin-top: 84px;
-	left: 1463px;
+	/*left: 1463px;*/
 }
 
 #pu210

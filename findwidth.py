@@ -4,6 +4,7 @@ import urllib2, re
 
 def find_too_wide(css, maxw):
         err = re.compile("\s*width:\s(?P<value>\d*)(?=px)")
+        left = re.compile("\s*left:\s(?P<value>\d*)(?=px)")
         i = -1
         for l in css.splitlines():
             i += 1
@@ -11,7 +12,12 @@ def find_too_wide(css, maxw):
             if err.match(l) is not None:
                 w = err.match(l).group('value')
                 if int(w) > 1200:
-                    print 'line %s: %s' % (i, w)
+                    print 'line %s: width %s' % (i, w)
+                    
+            if left.match(l) is not None:
+                w = left.match(l).group('value')
+                if int(w) > 1200:
+                    print 'line %s: left %s' % (i, w)
 
 def go():
     urls = ['http://memprotec.com/css/master_main-fr.css?4034467386',
@@ -29,7 +35,7 @@ def go():
         css = urllib2.urlopen(url).read()
         
         err = re.compile("\s*width:\s(?P<value>\d*)(?=px)")
-        
+        left = re.compile("\s*left:\s(?P<value>\d*)(?=px)")
         i = -1
         for l in css.splitlines():
             i += 1
@@ -37,4 +43,9 @@ def go():
             if err.match(l) is not None:
                 w = err.match(l).group('value')
                 if int(w) > 1200:
-                    print 'line %s: %s' % (i, w)
+                    print 'line %s: width %s' % (i, w)
+                    
+            if left.match(l) is not None:
+                w = left.match(l).group('value')
+                if int(w) > 1200:
+                    print 'line %s: left %s' % (i, w)
