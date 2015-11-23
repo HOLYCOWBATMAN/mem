@@ -1,24 +1,6 @@
 # -*- coding: utf-8 -*-
 import urllib2, re
 
-
-def find_too_wide(css, maxw):
-        err = re.compile("\s*width:\s(?P<value>\d*)(?=px)")
-        left = re.compile("\s*left:\s(?P<value>\d*)(?=px)")
-        i = -1
-        for l in css.splitlines():
-            i += 1
-            #print type(l)
-            if err.match(l) is not None:
-                w = err.match(l).group('value')
-                if int(w) > 1200:
-                    print 'line %s: width %s' % (i, w)
-                    
-            if left.match(l) is not None:
-                w = left.match(l).group('value')
-                if int(w) > 1200:
-                    print 'line %s: left %s' % (i, w)
-
 def go():
     urls = ['http://memprotec.com/css/master_main-fr.css?4034467386',
         'http://memprotec.com/css/site_global.css?201922450',
@@ -36,16 +18,23 @@ def go():
         
         err = re.compile("\s*width:\s(?P<value>\d*)(?=px)")
         left = re.compile("\s*left:\s(?P<value>\d*)(?=px)")
+        anypx = re.compile("\s*([a-z]*):\s(?P<value>\d*)(?=px)")
         i = -1
         for l in css.splitlines():
             i += 1
             #print type(l)
-            if err.match(l) is not None:
-                w = err.match(l).group('value')
-                if int(w) > 1200:
-                    print 'line %s: width %s' % (i, w)
+            #~ if err.match(l) is not None:
+                #~ w = err.match(l).group('value')
+                #~ if int(w) > 1200:
+                    #~ print 'line %s: width %s' % (i, w)
+                    #~ 
+            #~ if left.match(l) is not None:
+                #~ w = left.match(l).group('value')
+                #~ if int(w) > 1200:
+                    #~ print 'line %s: left %s' % (i, w)
                     
-            if left.match(l) is not None:
-                w = left.match(l).group('value')
+            if anypx.match(l) is not None:
+                w = anypx.match(l).group('value')
+                
                 if int(w) > 1200:
-                    print 'line %s: left %s' % (i, w)
+                    print 'line %s: %s %s' % (i, anypx.match(l).group(1), w)
